@@ -1,9 +1,11 @@
 import edu.princeton.cs.algs4.*;
 
+// Na implementacao atual de NisanBig, cada operacao de get() é quadratica em l = size
+// O tempo de execução é dominado por size^2 * tamanho da stream = O(log^2(tamanho da stream)*tamanho da stream)
 public class BigNorma {
 	
 	//atualiza o vetor aproximado
-	public static void atualiza(int pos, double val, double[] zip, NisanBig G) {
+	public static void atualiza(int pos, double val, double[] zip, NisanBig G) { // O(size^2)
 		
 		int[] temp = G.get(pos);		          // vetor aleatorio de +-1
 		for(int i = 0; i < temp.length; i++) {    // atualizacao do vetor de destino
@@ -12,7 +14,7 @@ public class BigNorma {
 	}
 	
 	public static void main(String[] args) {
-		double erro = 0.3;
+		double erro = 0.1;      // erro de 10%
 		int teste = 3000;
 		int size;               // tamanho do vetor aproximado
 		double trueNorma = 0;   // norma do vetor real
@@ -24,7 +26,7 @@ public class BigNorma {
 		In stream = new In("stream.txt");
 		
 		//size = teste;
-		size = (int)( 20.*Math.log(stream.readDouble())*(1.0 / (erro*erro)));
+		size = (int)( 0.08*Math.log(stream.readDouble())*(1.0 / (erro*erro)));  // tamanho de size para o erro ser de erro
 		StdOut.println("Size = " + size);
 		int seed = Integer.parseInt(args[0]); // coloca a semente do gerador
 		zip = new double[size];
@@ -35,7 +37,7 @@ public class BigNorma {
 		
 		NisanBig G = new NisanBig(size, seed);
 		
-		while(!stream.isEmpty()) {  // leitura do vetor real
+		while(!stream.isEmpty()) {  // leitura do vetor real, tempo = O(tamanho do stream*size^2) = O(size^2 * e^size)
 			pos = stream.readInt();
 			val = stream.readDouble();
 			trueNorma += val*val;
@@ -48,6 +50,6 @@ public class BigNorma {
 		}
 		StdOut.println(Math.sqrt(trueNorma));
 		StdOut.println(Math.sqrt(aproxNorma));
-		StdOut.println((Math.sqrt(trueNorma/aproxNorma)));
+		StdOut.println(Math.abs(1 -(Math.sqrt(aproxNorma/trueNorma))));
 	}
 }

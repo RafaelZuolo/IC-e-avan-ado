@@ -20,7 +20,7 @@ public class StreamGen {
 		stream.println(size);
 		
 		for(int i = 0; i < size; i++) {
-			stream.println(i + " " + StdRandom.uniform(-2, 3));
+			stream.println(i + " " + StdRandom.uniform(-10, 11));
 		}
 	}
 }

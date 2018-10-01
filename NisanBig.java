@@ -2,6 +2,10 @@ import edu.princeton.cs.algs4.*;
 import java.math.BigInteger;
 import java.util.Random;
 
+// Cada operacao de get() leva um tempo quadratico em l, se otimizarmos a operação
+// com os bits e a multiplicacao com os bits podemos torna-la linearitmica em l (O(l*log(l)))
+
+
 public final class NisanBig{ // gerador de vetores na forma {+1, -1}^l com acesso randomico
 	private final int l;  // o tamanho das palavras
 	private BigInteger[] sigma;  //nosso vetor semente
@@ -9,7 +13,7 @@ public final class NisanBig{ // gerador de vetores na forma {+1, -1}^l com acess
 	private final BigInteger lBig; // = 2^l em BigInteger
 
 	
-	//inicializa o gerador de numeros aleatorios
+	//inicializa o gerador de numeros aleatorios  tempo = O(l^2)
 	public NisanBig(BigInteger[] sigma) {
 		this.sigma = sigma;
 		this.l = (sigma.length - 1) / 2;
@@ -21,7 +25,7 @@ public final class NisanBig{ // gerador de vetores na forma {+1, -1}^l com acess
 		this.lBig = new BigInteger(doisL, 2);
 	}
 	
-	// inicializa com o vetor gerado aleatoriamente com a semente desejada
+	// inicializa com o vetor gerado aleatoriamente com a semente desejada tempo = O(l^2)
 	public NisanBig(int l, long randSeed) {
 		this.l = l;
 		BigInteger[] temp = new BigInteger[2*l + 1];
@@ -37,7 +41,7 @@ public final class NisanBig{ // gerador de vetores na forma {+1, -1}^l com acess
 		}
 		this.lBig = new BigInteger(doisL, 2);
 	}
-	// inicializa com o vetor gerado aleatoriamente.
+	// inicializa com o vetor gerado aleatoriamente. O(l^2)
 	public NisanBig(int l) {
 		this.l = l;
 		BigInteger[] temp = new BigInteger[2*l + 1];
@@ -53,26 +57,26 @@ public final class NisanBig{ // gerador de vetores na forma {+1, -1}^l com acess
 		this.lBig = new BigInteger(doisL, 2);
 	}
 	
-	public int size() {
+	public int size() {  // O(1)
 		return this.l;
 	}
 	
-	public double sqrtSize() {
+	public double sqrtSize() {   // O(1)
 		return Math.sqrt(this.l);
 	}
 	
-	// funcao que retorna a i-esima palavra aleatoria (lembre-se, i <= 2^l - 1)
+	// funcao que retorna a i-esima palavra aleatoria (lembre-se, i <= 2^l - 1) ------- O(l^2)
 	public int[] get(int i) { 
 		BigInteger prodtemp;
 		BigInteger x_j = sigma[0];
 		int[] value = new int[l];
 		String bits = Integer.toBinaryString(i);
 		
-		while(bits.length() < l) {    // precisamos completar a string binária
+		while(bits.length() < l) {    // precisamos completar a string binária --- quadratico O(l^2)
 			bits = "0".concat(bits);  // bits vira "00 ... 00"bits
 		}
 		
-		//percorremos a arvore geradora
+		//percorremos a arvore geradora, onde o produto de dois bigIntegers de tamanho l é O(l^2) 
 		for(int j = 0; j < l; j++) {
 			if(bits.charAt(j) == '1') {
 				prodtemp = sigma[2*j + 1].multiply(x_j).add(sigma[2*j+2]); // fazemos o produto com a soma mod 2^l
@@ -104,7 +108,7 @@ public final class NisanBig{ // gerador de vetores na forma {+1, -1}^l com acess
 		return bits;
 	}*/
 	
-	public static String byteArray2BitArray(byte[] bytes, int l) { //
+	public static String byteArray2BitArray(byte[] bytes, int l) { // O(l^2)
 		String bits = new String();
 
 		for (int i = bytes.length*8 - l; i < bytes.length * 8; i++) {
