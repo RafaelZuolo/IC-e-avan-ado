@@ -1,5 +1,7 @@
 import edu.princeton.cs.algs4.*;
 
+
+// execucao: java-algs4 BigNorma [int]
 // Na implementacao atual de NisanBig, cada operacao de get() é quadratica em l = size
 // O tempo de execução é dominado por size^2 * tamanho da stream = O(log^2(tamanho da stream)*tamanho da stream)
 public class BigNorma {

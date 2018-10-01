@@ -1,5 +1,7 @@
 import edu.princeton.cs.algs4.*;
 
+
+// classe que existe unicamente para gerar vetores grandes aleatórios
 public class StreamGen {
 	
 	public static String byteArray2BitArray(byte[] bytes) {
