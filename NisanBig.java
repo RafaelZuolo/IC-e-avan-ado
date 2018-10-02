@@ -9,7 +9,7 @@ import java.util.Random;
 public final class NisanBig{ // gerador de vetores na forma {+1, -1}^l com acesso randomico
 	private final int l;  // o tamanho das palavras
 	private BigInteger[] sigma;  //nosso vetor semente
-	private Random rand = new Random((long)123412341);
+	private Random rand = new Random();
 	private final BigInteger lBig; // = 2^l em BigInteger
 
 	
