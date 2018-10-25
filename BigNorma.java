@@ -15,6 +15,25 @@ public class BigNorma {
 		}
 	}
 	
+	public static double[] zip(In stream, NisanBig G) {  // devolve o vetor "compactado"
+		int pos;
+		double val;
+		double[] zip = new double[G.size()];
+		
+		for(int i = 0; i < zip.length; i++) {
+			zip[i] = 0.0;
+		}
+		
+		while(!stream.isEmpty()) {  // leitura do vetor real, tempo = O(tamanho do stream*size^2) = O(size^2 * e^size)
+			pos = stream.readInt();
+			val = stream.readDouble();
+			//if(pos % 1000 == 0)StdOut.println(pos);
+			atualiza(pos, val, zip, G);
+		}
+		
+		return zip;
+	}
+	
 	public static void main(String[] args) {
 		double erro = 0.1;      // erro de 10%
 		int teste = 3000;
