@@ -1,7 +1,7 @@
 import edu.princeton.cs.algs4.*;
 import java.math.BigInteger;
 import java.util.Random;
-
+//potencialmente errado pois as operacoes no GF[2^n] estao erradas
 // Cada operacao de get() leva um tempo quadratico em l, se otimizarmos a operação
 // com os bits e a multiplicacao com os bits podemos torna-la linearitmica em l (O(l*log(l)))
 

@@ -1,13 +1,13 @@
 import edu.princeton.cs.algs4.*;
 
 
-// execucao: java-algs4 BigNorma [int]
+// execucao: java-algs4 FastNorma [int]
 // Na implementacao atual de NisanBig, cada operacao de get() é quadratica em l = size
 // O tempo de execução é dominado por size^2 * tamanho da stream = O(log^2(tamanho da stream)*tamanho da stream)
-public class BigNorma {
+public class FastNorma {
 	
 	//atualiza o vetor aproximado com a entrada na posicao pos do vetor real
-	public static void atualiza(int pos, double val, double[] zip, NisanBig G) { // O(size^2)
+	public static void atualiza(int pos, double val, double[] zip, FastNisan G) { // O(size^2)
 		
 		int[] temp = G.get(pos);		          // vetor aleatorio de +-1
 		for(int i = 0; i < temp.length; i++) {    // atualizacao do vetor de destino
@@ -15,10 +15,10 @@ public class BigNorma {
 		}
 	}
 	
-	public static double[] zip(In stream, NisanBig G) {  // devolve o vetor "compactado"
+	public static double[] zip(In stream, FastNisan G) {  // devolve o vetor "compactado"
 		int pos;
 		double val;
-		double[] zip = new double[G.size()];
+		double[] zip = new double[G.size()-1];
 		
 		for(int i = 0; i < zip.length; i++) {
 			zip[i] = 0.0;
@@ -36,7 +36,7 @@ public class BigNorma {
 	
 	public static void main(String[] args) {
 		double erro = 0.1;      // erro de 10%
-		int teste = Integer.parseInt(args[0]);
+		int teste = Integer.parseInt(args[0]);	// deve ser o N certo para o GF[2^N]
 		double sizeReal;        // tamanho do vetor real 
 		int size;               // tamanho do vetor aproximado
 		double trueNorma = 0;   // norma do vetor real
@@ -59,7 +59,7 @@ public class BigNorma {
 		}
 		
 		Stopwatch w = new Stopwatch();
-		NisanBig G = new NisanBig(size);
+		FastNisan G = new FastNisan(size, size);
 		
 		while(!stream.isEmpty()) {  // leitura do vetor real, tempo = O(tamanho do stream*size^2) = O(size^2 * e^size)
 			pos = stream.readInt();
