@@ -1,6 +1,8 @@
 import edu.princeton.cs.algs4.*;
 
-// está quebrado, preciso descobrir pq
+// Fonte: fast Multiplication in Finite Fields GF[2^N]
+// Joseph H. Silverman, Lecture notes in Computer Science 
+// livro Cryptographic Hardware And Embedd Systems, Springer
 
 public class FastNisan { // tentar deixar o nisan mais rápido mudando p produto
 	private final int l;

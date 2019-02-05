@@ -79,7 +79,7 @@ public final class NisanBig{ // gerador de vetores na forma {+1, -1}^l com acess
 		//percorremos a arvore geradora, onde o produto de dois bigIntegers de tamanho l é O(l^2) 
 		for(int j = 0; j < l; j++) {
 			if(bits.charAt(j) == '1') {
-				prodtemp = sigma[2*j + 1].multiply(x_j).add(sigma[2*j+2]); // fazemos o produto com a soma mod 2^l
+				prodtemp = sigma[2*j + 1].multiply(x_j).xor(sigma[2*j+2]); // fazemos o produto com a soma mod 2^l
 				prodtemp = prodtemp.mod(lBig);
 				x_j = prodtemp;
 			}
