@@ -74,7 +74,7 @@ public class BigNorma {
 		}
 		StdOut.println("\nNorma real  = " + Math.sqrt(trueNorma));
 		StdOut.println("Norma aprox = " + Math.sqrt(aproxNorma));
-		StdOut.println("Erro        = " + 100 * Math.abs(1 -(Math.sqrt(aproxNorma/trueNorma))) + " %");
+		StdOut.println("Erro        = " + 100 * Math.abs(1 -(Math.sqrt(trueNorma/aproxNorma))) + " %");
 		StdOut.println(w.elapsedTime());
 	}
 }

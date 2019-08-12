@@ -4,6 +4,7 @@ import java.util.Random;
 //potencialmente errado pois as operacoes no GF[2^n] estao erradas
 // Cada operacao de get() leva um tempo quadratico em l, se otimizarmos a operação
 // com os bits e a multiplicacao com os bits podemos torna-la linearitmica em l (O(l*log(l)))
+// o vetor a ser projetado deve ser menor que 2^l
 
 
 public final class NisanBig{ // gerador de vetores na forma {+1, -1}^l com acesso randomico

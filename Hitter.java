@@ -1,5 +1,9 @@
 import edu.princeton.cs.algs4.*;
-
+// Resolve o problema do heavy hitter para uma coordenada 
+// específica
+// execução: java-algs4 Hitter [int]
+// o argumento é a coordenada a ser aproximada
+// resultados bons se a coordenada contribui com pelo menos 10% da norma
 public class Hitter {
 	
 	public static void main(String[] args) {
@@ -7,8 +11,7 @@ public class Hitter {
 		int hitter = Integer.parseInt(args[0]);
 		double erro = 0.05;
 		double sizeReal = stream.readDouble();
-		int size = (int)( 0.1*Math.log(sizeReal)*(1.0 / (erro*erro)));  // tamanho de size para o erro ser de erro
-
+		int size = Integer.parseInt(args[1]);
 		double normaStream = 0;
 		double normaDelta = 0;
 		double [] zip;

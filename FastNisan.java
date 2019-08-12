@@ -12,6 +12,7 @@ public class FastNisan { // tentar deixar o nisan mais rápido mudando p produto
 	// lembre-se que dim deve ser um valor 'bom', ou seja, 
 	// dim + 1 deve ser primo e deve ter 2 como raiz primitiva
 	// Use uma tabela com valores bons de dim
+	// O tamanho do vetor projetado deve ser menor que 2^dim
 	
 /*	Lista de valores "bons" de primos:
 101 107 131 139 149 163 173 179 181 197 211 227 269 293
@@ -38,13 +39,13 @@ public class FastNisan { // tentar deixar o nisan mais rápido mudando p produto
 			}
 		}
 	}
-	
-	public static int[] shiftSum(int[] a, int[] b, int shift) { //soma dois vetores binarios com shift right no primeiro
+	//soma dois vetores binarios com shift right no primeiro
+	public static int[] shiftSum(int[] a, int[] b, int shift) {
 		int sa = a.length;
 		int sb = b.length;
 		int warp;
 		if (sa != sb) {
-			StdOut.println("OMG SOMANDO VETOR DE TAMANHO DIFERENteS");
+			StdOut.println("SOMANDO VETOR DE TAMANHO DIFERENTES");
 			return(a);
 		}
 		int[] c = new int[sa];
@@ -60,7 +61,7 @@ public class FastNisan { // tentar deixar o nisan mais rápido mudando p produto
 		return a;
 	}
 	
-	public static int[] multiply(int[] a, int[] b) { //uma convolução melhor?
+	public static int[] multiply(int[] a, int[] b) { //uma convolução melhor
 		int shift = 0;
 		int[] c = new int[a.length];
 		for(int i = 0; i < c.length; i++)
@@ -72,8 +73,9 @@ public class FastNisan { // tentar deixar o nisan mais rápido mudando p produto
 		}
 		return c;
 	}
-	
-	public int[] get(int i) { //vamos percorrer os bits de i truncando a divisão por 2
+	// vamos percorrer os bits de i truncando a divisão por 2 enquanto
+	// geramos a coluna desejada
+	public int[] get(int i) { 
 		int[] x_j = sigma[0];
 		int bit;
 		
@@ -114,21 +116,22 @@ public class FastNisan { // tentar deixar o nisan mais rápido mudando p produto
 	}
 	
 	public static void main(String[] args) {
- 	/* 	int sum = 0;
+ 	 	int sum = 0;
 		int dim = Integer.parseInt(args[0]);
-		FastNisan G = new FastNisan(dim, dim);
-		G.printSigma();
+		int l = Integer.parseInt(args[1]);
+		FastNisan G = new FastNisan(l, dim);
+		//G.printSigma();
 		int[] word;
-		for(int i = 0; i < 10000; i++) {
+		for(int i = 0; i > -2; i++) {
 			word = G.get(i);	
-			for(int j = 0; j < 101 - 1; j++) {
+			for(int j = 0; j < word.length; j++) {
 				sum += word[j];
 				StdOut.print(word[j]);
 			}
 			StdOut.println("\nSoma: " + sum);
 			sum = 0;
-			StdIn.readChar();
-		}  */
+			i = StdIn.readInt();
+		}  
 		int[] a = {0,0,1,0,0,0,0};
 		int[] b = {1,0,0,0,0,0,0};
 		int shift = Integer.parseInt(args[0]);
